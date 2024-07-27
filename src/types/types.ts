@@ -5,42 +5,44 @@ export interface UploadOptions  {
   onPreview: (src: string) => void 
 };
 
-/** 
+export type SizeOptions = "30" | "50" | "70" | "100";
+
+/**
  * User configuration of Image block tunes. Allows to add custom tunes through the config
-*/
-export interface ActionConfig { 
+ */
+export interface ActionConfig {
   /**
    * The name of the tune.
    */
   name: string;
-  
+
   /**
    * The icon for the tune. Should be an SVG string.
    */
   icon: string;
-  
+
   /**
    * The title of the tune. This will be displayed in the UI.
    */
   title: string;
-  
+
   /**
    * An optional flag indicating whether the tune is a toggle (true) or not (false).
    */
   toggle?: boolean;
-  
+
   /**
    * An optional action function to be executed when the tune is activated.
    */
   action?: Function;
-};
+}
 
 /**
  * UploadResponseFormat interface representing the response format expected from the backend on file uploading.
  */
 export interface UploadResponseFormat<AdditionalFileData = {}> {
   /**
-   * success - 1 for successful uploading, 0 for failure 
+   * success - 1 for successful uploading, 0 for failure
    */
   success: number;
 
@@ -71,15 +73,7 @@ export type ImageToolData<Actions = {}, AdditionalFileData = {}> = {
    */
   withBorder: boolean;
 
-  /**
-   * Flag indicating whether the image has a background.
-   */
-  withBackground: boolean;
-
-  /**
-   * Flag indicating whether the image is stretched.
-   */
-  stretched: boolean;
+  size: SizeOptions | undefined;
 
   /**
    * Object containing the URL of the image file.

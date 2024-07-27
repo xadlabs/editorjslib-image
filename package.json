@@ -1,5 +1,5 @@
 {
-  "name": "@editorjs/image",
+  "name": "editorjslib-image",
   "version": "2.9.2",
   "keywords": [
     "codex editor",
@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite build --watch",
     "build": "vite build",
     "lint": "eslint src/ --ext .ts",
     "lint:errors": "eslint src/ --quiet",

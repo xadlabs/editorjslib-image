@@ -96,6 +96,8 @@
       &-preloader {
         display: none;
       }
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -127,26 +129,50 @@
     }
   }
 
-  &--withBackground {
-    ^&__image {
-      padding: 15px;
-      background: var(--bg-color);
+  /* &--withBackground {
+  ^&__image {
+    padding: 15px;
+    background: var(--bg-color);
 
+    &-picture {
+      max-width: 60%;
+      margin: 0 auto;
+    }
+  }
+  }
+  */ 
+
+  &--size30 {
+    ^&__image {
       &-picture {
-        max-width: 60%;
-        margin: 0 auto;
+        width: 30%;
       }
     }
   }
 
-  &--stretched {
+  &--size50 {
+    ^&__image {
+      &-picture {
+        width: 50%;
+      }
+    }
+  }
+
+  &--size70 {
+    ^&__image {
+      &-picture {
+        width: 70%;
+      }
+    }
+  }
+
+  &--size100 {
     ^&__image {
       &-picture {
         width: 100%;
       }
     }
   }
-
 }
 
 @keyframes image-preloader-spin {
