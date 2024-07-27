@@ -117,9 +117,9 @@ export default class ImageTool implements BlockTool {
       additionalRequestHeaders: config.additionalRequestHeaders,
       field: config.field,
       types: config.types,
-      captionPlaceholder: this.api.i18n.t(
-        config.captionPlaceholder ? config.captionPlaceholder : "Caption"
-      ),
+      // captionPlaceholder: this.api.i18n.t(
+      //   config.captionPlaceholder ? config.captionPlaceholder : "Caption"
+      // ),
       buttonContent: config.buttonContent,
       uploader: config.uploader,
       actions: config.actions,
@@ -233,7 +233,7 @@ export default class ImageTool implements BlockTool {
    *
    * @returns {HTMLDivElement}
    */
-  render(): HTMLDivElement  {
+  render(): HTMLDivElement {
     return this.ui.render(this.data) as HTMLDivElement;
   }
 
@@ -256,9 +256,9 @@ export default class ImageTool implements BlockTool {
    * @returns {ImageToolData}
    */
   save(): ImageToolData {
-    const caption = this.ui.nodes.caption;
+    // const caption = this.ui.nodes.caption;
 
-    this._data.caption = caption.innerHTML;
+    // this._data.caption = caption.innerHTML;
 
     return this.data;
   }
@@ -402,9 +402,9 @@ export default class ImageTool implements BlockTool {
   set data(data: ImageToolData) {
     this.image = data.file;
 
-    this._data.caption = data.caption || "";
+    // this._data.caption = data.caption || "";
     this._data.size = data.size;
-    this.ui.fillCaption(this._data.caption);
+    // this.ui.fillCaption(this._data.caption);
 
     ImageTool.tunes.forEach(({ name: tune }) => {
       const value = this.isTuneActive(tune);

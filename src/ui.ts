@@ -15,7 +15,7 @@ enum UiState {
   /**
    * The UI is in an uploading state, indicating an image is currently being uploaded.
    */
-  Uploading = "uploading", 
+  Uploading = "uploading",
 
   /**
    * The UI is in a filled state, with an image successfully loaded.
@@ -51,11 +51,11 @@ interface Nodes {
    * Preloader element for the image.
    */
   imagePreloader: HTMLElement;
-  
+
   /**
    * Caption element for the image.
    */
-  caption: HTMLElement;
+  // caption: HTMLElement;
 }
 
 /**
@@ -87,30 +87,30 @@ interface ConstructorParams {
  *  - apply tune view
  */
 export default class Ui {
-/**
- * API instance for Editor.js.
- */
-private api: API;
+  /**
+   * API instance for Editor.js.
+   */
+  private api: API;
 
-/**
- * Configuration for the image tool.
- */
-private config: ImageConfig;
+  /**
+   * Configuration for the image tool.
+   */
+  private config: ImageConfig;
 
-/**
- * Callback function for selecting a file.
- */
-private onSelectFile: () => void;
+  /**
+   * Callback function for selecting a file.
+   */
+  private onSelectFile: () => void;
 
-/**
- * Flag indicating if the UI is in read-only mode.
- */
-private readOnly: boolean;
+  /**
+   * Flag indicating if the UI is in read-only mode.
+   */
+  private readOnly: boolean;
 
-/**
- * Nodes representing various elements in the UI.
- */
-public nodes: Nodes;
+  /**
+   * Nodes representing various elements in the UI.
+   */
+  public nodes: Nodes;
   /**
    * @param {object} ui - image tool Ui module
    * @param {object} ui.api - Editor.js API
@@ -125,13 +125,13 @@ public nodes: Nodes;
     this.readOnly = readOnly;
     this.nodes = {
       wrapper: make('div', [this.CSS.baseClass, this.CSS.wrapper]),
-      imageContainer: make('div', [ this.CSS.imageContainer ]),
+      imageContainer: make('div', [this.CSS.imageContainer]),
       fileButton: this.createFileButton(),
       imageEl: undefined,
       imagePreloader: make('div', this.CSS.imagePreloader),
-      caption: make('div', [this.CSS.input, this.CSS.caption], {
-        contentEditable: !this.readOnly,
-      }),
+      // caption: make('div', [this.CSS.input, this.CSS.caption], {
+      //   contentEditable: !this.readOnly,
+      // }),
     };
 
     /**
@@ -144,10 +144,10 @@ public nodes: Nodes;
      *    <select-file-button />
      *  </wrapper>
      */
-    this.nodes.caption.dataset.placeholder = this.config.captionPlaceholder;
+    // this.nodes.caption.dataset.placeholder = this.config.captionPlaceholder;
     this.nodes.imageContainer.appendChild(this.nodes.imagePreloader);
     this.nodes.wrapper.appendChild(this.nodes.imageContainer);
-    this.nodes.wrapper.appendChild(this.nodes.caption);
+    // this.nodes.wrapper.appendChild(this.nodes.caption);
     this.nodes.wrapper.appendChild(this.nodes.fileButton);
   }
 
@@ -170,7 +170,7 @@ public nodes: Nodes;
       imageContainer: 'image-tool__image',
       imagePreloader: 'image-tool__image-preloader',
       imageEl: 'image-tool__image-picture',
-      caption: 'image-tool__caption',
+      // caption: 'image-tool__caption',
     };
   };
 
@@ -180,7 +180,7 @@ public nodes: Nodes;
    * @param {ImageToolData} toolData - saved tool data
    * @returns {Element}
    */
-  render(toolData: ImageToolData): HTMLElement  {
+  render(toolData: ImageToolData): HTMLElement {
     if (!toolData.file || Object.keys(toolData.file).length === 0) {
       this.toggleStatus(UiState.Empty);
     } else {
@@ -195,7 +195,7 @@ public nodes: Nodes;
    * @returns {Element}
    */
   createFileButton(): HTMLElement {
-    const button = make('div', [ this.CSS.button ]);
+    const button = make('div', [this.CSS.button]);
 
     button.innerHTML = this.config.buttonContent || `${IconPicture} ${this.api.i18n.t('Select an Image')}`;
 
@@ -240,7 +240,7 @@ public nodes: Nodes;
      */
     const tag = /\.mp4$/.test(url) ? 'VIDEO' : 'IMG';
 
-    const attributes: { [key: string]: any} = {
+    const attributes: { [key: string]: any } = {
       src: url,
     };
 
@@ -306,9 +306,9 @@ public nodes: Nodes;
    * @returns {void}
    */
   fillCaption(text: string): void {
-    if (this.nodes.caption) {
-      this.nodes.caption.innerHTML = text;
-    }
+    // if (this.nodes.caption) {
+    //   this.nodes.caption.innerHTML = text;
+    // }
   }
 
   /**
@@ -320,7 +320,7 @@ public nodes: Nodes;
   toggleStatus(status: UiState): void {
     for (const statusType in UiState) {
       if (Object.prototype.hasOwnProperty.call(UiState, statusType)) {
-          this.nodes.wrapper.classList.toggle(`${this.CSS.wrapper}--${UiState[statusType as keyof typeof UiState]}`, status === UiState[statusType as keyof typeof UiState]);
+        this.nodes.wrapper.classList.toggle(`${this.CSS.wrapper}--${UiState[statusType as keyof typeof UiState]}`, status === UiState[statusType as keyof typeof UiState]);
       }
     }
   }

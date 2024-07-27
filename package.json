@@ -1,5 +1,5 @@
 {
-  "name": "editorjslib-image",
+  "name": "zmeditorjslib-imagenew",
   "version": "2.9.2",
   "keywords": [
     "codex editor",
@@ -9,7 +9,7 @@
   ],
   "description": "Image Tool for Editor.js",
   "license": "MIT",
-  "repository": "https://github.com/editor-js/image",
+  "repository": "https://github.com/xadlabs/editorjslib-image",
   "files": [
     "dist"
   ],
