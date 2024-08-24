@@ -206,6 +206,19 @@ export default class Ui {
     return button;
   }
 
+  disableFileButton(): void {
+    this.nodes.fileButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+  }
+
+  enableFileButton(): void {
+    this.nodes.fileButton.addEventListener('click', () => {
+      this.onSelectFile();
+    });
+
+  }
+
   /**
    * Shows uploading preloader
    *
@@ -214,7 +227,7 @@ export default class Ui {
    */
   showPreloader(src: string): void {
     this.nodes.imagePreloader.style.backgroundImage = `url(${src})`;
-
+    this.disableFileButton();
     this.toggleStatus(UiState.Uploading);
   }
 
@@ -225,6 +238,7 @@ export default class Ui {
    */
   hidePreloader(): void {
     this.nodes.imagePreloader.style.backgroundImage = '';
+    this.enableFileButton();
     this.toggleStatus(UiState.Empty);
   }
 
